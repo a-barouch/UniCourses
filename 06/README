@@ -1,0 +1,22 @@
+arielleb, adi.simhi
+===============================================================================
+Arielle Barouch, ID 205925704, arielleb@mail.huji.ac.il
+Adi Simhi, ID 206921165, adi.simhi@mail.huji.ac.il
+===============================================================================
+
+                           Project 06  - Assembler
+                           ------------------------
+  
+
+Submitted Files
+---------------
+README - This file.
+assembler.py - a python file that gets a directory that has one or more asm files and produces hdl file for each asm
+file
+Assembler
+Makefile
+
+
+
+Remarks
+-------

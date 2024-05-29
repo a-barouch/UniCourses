@@ -1,0 +1,43 @@
+arielleb, adi.simhi
+Arielle Barouch (205925704), Adi Simhi (206921165)
+EX: 2
+
+FILES:
+uthreads.cpp
+uthreads.hpp
+Thread.cpp
+Thread.hpp
+makefile
+
+REMARKS:
+
+ANSWERS:
+
+1. Advantages of user level threads:
+    * The kernel is not aware of the threads, therefor moving from one thread to another can be done without
+        the operating system.
+    * The user can have preferences as to which threads run at which time and for how long, and is not limited
+        to the algorithm of the operating system.
+    * The user can run the code on every operating system because the threads exchange is not dependant on the
+        operating system.
+2. Advantage: Each tab has its own process and therefor has its own memory in which data and files are stored.
+                That gives extra defence against malware attacks that can use the fact that a web page can access
+                another web page memory in case of kernel level threads.
+   Disadvantages: Communication between processes has higher overhead than thread communication, as well as moving
+                    from one process to another. Different threads use the same data and same code.
+
+3.  There are constant interrupts of the keyboard when we used it to find the pid and type the kill command (SIGINT
+    interrupts).
+    The command: "kill + pid" sent a signal to kill the process Shotwell. The kill signal is SIGTERM
+    that invokes the handler of the signal that causes the process to end.
+
+4.
+    Virtual time: time as percieved by the process itself, only when the process runs.
+    example: If we want two threads to run with equal time for each thread we will use virtual time to make sure
+                that each thread had the same total amount of time, for example if we have a game of two players
+                each one has a turn to play with limited time.
+    Real time: time as runs on the system clock, regardless if the process runs or not.
+    example: If we want threads to be synchronized to the global system time, for example if we have a site that sells
+                in auction, every item has an expiration time in which the highest offer gets it. For that, we need high
+                synchronization among all threads involved so the sell will be fair and we will know for sure who got
+                the item.

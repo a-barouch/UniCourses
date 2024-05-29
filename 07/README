@@ -1,0 +1,25 @@
+arielleb, adi.simhi
+===============================================================================
+Arielle Barouch, ID 205925704, arielleb@mail.huji.ac.il
+Adi Simhi, ID 206921165, adi.simhi@mail.huji.ac.il
+===============================================================================
+
+                           Project 07  - Virtual Machine (Arithmetic)
+                           ------------------------------------------
+  
+
+Submitted Files
+---------------
+README - This file.
+VMtranslator.py - a python file that gets a directory that has one or
+					more vm files and produces am asm file
+Parser.py - a class of parser of vm files
+codeWriter.py - opens a file and write the translated asm commands 
+
+VMtranslator
+Makefile
+
+
+
+Remarks
+-------

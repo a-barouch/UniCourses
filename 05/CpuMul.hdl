@@ -1,0 +1,74 @@
+/**
+* This chip is an extension of the book CPU by using the extended ALU.
+* More specificly if instruction[15]==0 or (instruction[14] and instruction[13] equals 1)
+* the CpuMul behave exactly as the book CPU.
+* While if it is C instruction and instruction[13] == 0 the output will be D*A/M 
+* (according to instruction[12]).
+* Moreover, if it is c instruction and instruction[14] == 0 it will behave as follows:
+*
+* instruction:  | 12 | 11 | 10 |
+* _____________________________
+* shift left D  | 0  | 1  | 1  |
+* shift left A  | 0  | 1  | 0  |
+* shift left M  | 1  | 1  | 0  |
+* shift right D | 0  | 0  | 1  |
+* shift right A | 0  | 0  | 0  |
+* shift right M | 1  | 0  | 0  |
+**/
+
+CHIP CpuMul{
+
+    IN  inM[16],         // M value input  (M = contents of RAM[A])
+        instruction[16], // Instruction for execution
+        reset;           // Signals whether to re-start the current
+                         // program (reset=1) or continue executing
+                         // the current program (reset=0).
+
+    OUT outM[16],        // M value output
+        writeM,          // Write into M? 
+        addressM[15],    // Address in data memory (of M)
+        pc[15];          // address of next instruction
+
+     PARTS:
+
+	// calculate A register input if it is Alu output or Instruction
+	Mux16(a = instruction, b = ExAluOutput, sel = instruction[15], out = ALUorIns);
+	
+	// calculate A register load and create A register
+	Mux(a = true, b = instruction[5], sel = instruction[15], out = loadA);
+	ARegister(in = ALUorIns, load = loadA, out = Aout, out[0..14] = addressM);
+	
+	// calculate D register load and create D register
+	And(a = instruction[15], b = instruction[4], out = loadD);
+	DRegister(in = ExAluOutput, load = loadD, out = Dout);
+	
+	// calculate ALU input if it is A or M 
+	Mux16(a = Aout, b = inM, sel = instruction[12], out = AorM);
+	
+	// Alu calculations
+	ExtendAlu(x = Dout, y = AorM, instruction = instruction[6..14],  zr = aluzr, ng = alung,out = ExAluOutput, out=outM);
+	
+	// decide writeM
+	And(a = instruction[15], b = instruction[3], out = writeM);
+	
+	// PC handling
+	And(a=alung,b=instruction[2],out=isneg); // is the alu output negative, is j1 matches isneg
+	And(a=aluzr,b=instruction[1],out=isZero); // is the alu output zero, is j2 matches isZero
+	Not(in=alung,out=notng);
+	Not(in=aluzr,out=notZero);
+	And(a=notng,b=notZero,out=pos); // is the alu output positive
+	And(a=instruction[0],b = pos,out=ispos); // is j3 matches ispos
+	
+	// check if (isZero or isneg or ispos) = true
+	Or(a= isZero,b= ispos,out= iszeropos);
+	Or(a= isneg,b= iszeropos,out= issomthing);
+	
+	// check if the instruction is c instruction 
+	And(a = issomthing, b = instruction[15], out = loadPC);
+	
+	// update PC 
+	PC(in = Aout, load = loadPC, inc = true, reset = reset, out[0..14] = pc);
+	
+	
+	
+}

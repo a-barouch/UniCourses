@@ -1,0 +1,32 @@
+arielleb, adi.simhi
+===============================================================================
+Arielle Barouch, ID 205925704, arielleb@mail.huji.ac.il
+Adi Simhi, ID 206921165, adi.simhi@mail.huji.ac.il
+===============================================================================
+
+                           Project 01 - Logic Gates
+                           ----------------------- 
+  
+
+Submitted Files
+---------------
+README - This file.
+And.hdl- The And chip.
+And16.hdl- The And16 chip.
+DMux.hdl- The DMux chip.
+DMux4Way.hdl- The DMux4Way chip.
+DMux8Way.hdl- The DMux8Waychip.
+Mux.hdl- The Mux chip.
+Mux4Way16.hdl- The Mux4Way16 chip.
+Mux8Way16.hdl- The Mux8Way16 chip.
+Mux16.hdl- The Mux16 chip.
+Not.hdl- The Not chip.
+Not16.hdl- The Not16 chip.
+Or.hdl- The Or chip.
+Or8Way.hdl- The Or8Way chip.
+Or16.hdl- The Or16 chip.
+Xor.hdl- The Xor chip.
+
+Remarks
+-------
+* The chip was actually implemented by simply using an Nand chip

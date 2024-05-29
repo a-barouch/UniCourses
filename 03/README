@@ -1,0 +1,26 @@
+arielleb, adi.simhi
+===============================================================================
+Arielle Barouch, ID 205925704, arielleb@mail.huji.ac.il
+Adi Simhi, ID 206921165, adi.simhi@mail.huji.ac.il
+===============================================================================
+
+                           Project 03 - Memory
+                           ---------------------------------- 
+  
+
+Submitted Files
+---------------
+README - This file.
+Bit.hdl- The Bit chip.
+Register.hdl- The Register chip.
+RAM8.hdl- The RAM8 chip.
+RAM64.hdl- The RAM64 chip.
+RAM512.hdl- The RAM512 chip.
+RAM4k.hdl- The RAM4k chip.
+RAM16k.hdl- The RAM16k chip.
+PC.hdl- The PC chip.
+
+
+Remarks
+-------
+* The files are divided between the folders a and b according to project description

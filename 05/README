@@ -1,0 +1,24 @@
+arielleb, adi.simhi
+===============================================================================
+Arielle Barouch, ID 205925704, arielleb@mail.huji.ac.il
+Adi Simhi, ID 206921165, adi.simhi@mail.huji.ac.il
+===============================================================================
+
+                           Project 04 - Computer Architecture
+                           ----------------------------------
+  
+
+Submitted Files
+---------------
+README - This file.
+Memory.hdl- memory chip of hack computer
+ExtendAlu.hdl- ExtendAlu chip of hack computer
+CPU.hdl- CPU chip of hack computer
+Computer.hdl- Computer chip that connects the RAM, ROM and CPU chips to one hack computer
+CpuMul.hdl- extended cpu chip using extendAlu
+
+
+
+Remarks
+-------
+* We now have a hack cumputer that can be used with hack language 

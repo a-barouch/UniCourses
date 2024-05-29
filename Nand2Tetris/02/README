@@ -1,0 +1,26 @@
+arielleb, adi.simhi
+===============================================================================
+Arielle Barouch, ID 205925704, arielleb@mail.huji.ac.il
+Adi Simhi, ID 206921165, adi.simhi@mail.huji.ac.il
+===============================================================================
+
+                           Project 02 - Arithmetic Operations
+                           ---------------------------------- 
+  
+
+Submitted Files
+---------------
+README - This file.
+HalfAdder.hdl- The HalfAdder chip.
+FullAdder.hdl- The FullAdder chip.
+Add16.hdl- The Add16 chip.
+Inc16.hdl- The Inc16 chip.
+Alu.hdl- The Alu.
+ShiftLeft.hdl- The ShiftLeft chip.
+ShiftRight.hdl- The ShiftRight chip.
+Mul.hdl- The Mul chip.
+
+
+Remarks
+-------
+* The chip was actually implemented by simply using an Nand chip

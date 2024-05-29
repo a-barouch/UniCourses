@@ -1,0 +1,105 @@
+
+
+
+/** Implements a graphical snake */
+class Snake{
+	field Array body; // array of squares building the snake's body
+	field int length; // the current length of the snake
+	field int maxLen; // the maximum length of a snake
+	field int squareSize; // size of each square building the snake's body
+	
+	/** constructs a new snake with given location and length*/
+	constructor Snake new(){
+		var int initX;
+		var int initY;
+		let initX = 50;
+		let initY = 70;
+		let squareSize = 5;
+		let length = 4; // initialized length is 4 squares
+		let maxLen = 25;
+		let body = Array.new(maxLen);
+		do initBody(initX, initY);
+		do draw();
+		return this;
+	}
+	
+	/** disposes this snake*/
+	method void dispose(){
+		var int i;
+		var Square curSquare;
+		let i = 0;
+		while (~(i = length)){
+			let curSquare = body[i];
+			do curSquare.dispose();
+			let i = i+1;
+			
+		}
+		do Memory.deAlloc(body);
+		do Memory.deAlloc(this);
+		return;
+	}
+	
+	/** initialized a snake at the beginning of the game */
+	method void initBody(int initX, int initY){
+		var int i;
+		var Square square; 
+		let i = 0;
+		while (~(i = length)){
+			let square = Square.new(initX+(i*squareSize*2),initY, squareSize, 4);
+			let body[i] = square;
+			let i = i+1;
+		}return;
+	}
+	
+	/** Draws the snake on the screen. */
+	method void draw() {
+		var int i;
+		var Square curSquare;
+		let i = 0;
+			while (~(i = length)){
+				let curSquare = body[i];
+				do curSquare.draw();
+				let i = i+1;
+			}
+      return;
+	}
+   
+      /** Erases the snake from the screen. */
+	method void erase() {
+		var int i;
+		var Square curSquare;
+		let i = 0;
+		while (~(i = length)){
+			let curSquare = body[i];
+			do curSquare.erase();
+			let i = i+1;
+		}
+      return;
+	}
+	
+
+	method int getLen(){
+		return length;
+	}
+	
+	method void setLen(int newLength){
+		let length = newLength;
+		return;
+	}
+	
+	method int getMaxLen(){
+		return maxLen;
+	}
+	
+	method Array getBody(){
+		return body;
+	}
+
+
+
+	
+	
+
+
+
+}

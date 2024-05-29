@@ -1,0 +1,27 @@
+arielleb, adi.simhi
+===============================================================================
+Arielle Barouch, ID 205925704, arielleb@mail.huji.ac.il
+Adi Simhi, ID 206921165, adi.simhi@mail.huji.ac.il
+===============================================================================
+
+                           Project 09 - High Level Programming
+                           -----------------------------------
+  
+
+Submitted Files
+---------------
+README - This file.
+Main.jack - creates a Game object and runs it
+Game.jack - creates a Snake and Apple object, reads user keyboard input and moves
+			the snake accordingly
+Snake.jack - a snake object, composed of square objects in an array
+Apple.jack - an apple object
+Square.jack - a square object 
+
+
+
+Remarks
+-------
+* We tried to create a modular code according to object oriented programming
+	principles. We used getters and setters and accessed another object's 
+	fields only through them.	

@@ -1,0 +1,136 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/09/Square/Square.jack
+
+/** Implements a graphical square. */
+class Square {
+
+// Location on the screen
+    field int x, y;
+    field int direction; // 1 up, 2 down, 3 left, 4 right
+
+    // The size of the link
+    field int size;
+
+    /** Constructs a new link with a given location and size. */
+    constructor Square new(int Ax, int Ay, int Asize, int Adirection) {
+        let x = Ax;
+        let y = Ay;
+        let size = Asize;
+        let direction = Adirection;
+        do draw();
+
+        return this;
+    }
+
+    /** Deallocates the object's memory. */
+    method void dispose() {
+        do Memory.deAlloc(this);
+        return;
+    }
+
+    /** Draws the link on the screen. */
+    method void draw() {
+        do Screen.setColor(true);
+        do Screen.drawRectangle(x, y, x+size, y+size);
+        return;
+    }
+
+    /** Erases the link from the screen. */
+    method void erase() {
+        do Screen.setColor(false);
+        do Screen.drawRectangle(x, y, x+size, y+size);
+        return;
+    }
+
+    /** Moves up by 2 pixels. */
+    method void moveUp() {
+        if (y  > 1) {
+            do Screen.setColor(false);
+            do Screen.drawRectangle(x, y, x+size, y+size);
+            let y = y - 10;
+            do Screen.setColor(true);
+            do Screen.drawRectangle(x, y, x+size, y+size);        
+        }
+        return;
+    }
+
+    /** Moves down by 2 pixels. */
+    method void moveDown() {
+        if ((y + size) < 254) {
+            do Screen.setColor(false);
+            do Screen.drawRectangle(x, y, x+size, y+size);
+            let y = y + 10;
+            do Screen.setColor(true);
+            do Screen.drawRectangle(x, y, x+size, y+size);
+        }
+        return;
+    }
+    
+    /** Moves left by 2 pixels. */
+    method void moveLeft() {
+        if (x > 1) {
+            do Screen.setColor(false);
+            do Screen.drawRectangle(x, y, x+size, y+size);
+            let x = x - 10;
+            do Screen.setColor(true);
+            do Screen.drawRectangle(x, y, x+size, y+size);
+        }
+        return;
+    }
+    
+    /** Moves right by 2 pixels. */
+    method void moveRight() {
+        if ((x + size) < 510) {
+            do Screen.setColor(false);
+            do Screen.drawRectangle(x, y, x+size, y+size);
+            let x = x + 10;
+            do Screen.setColor(true);
+            do Screen.drawRectangle(x, y, x+size, y+size);
+        }
+        return;
+    }    
+    method bool move(){
+
+        if (direction = 1)
+        {
+            return moveUp();
+        }
+        if (direction = 2)
+        {
+            return moveDown();
+        }
+        if (direction = 3)
+        {
+            return moveLeft();
+        }
+        if (direction = 4)
+        {
+            return moveRight();
+        }
+        
+        return false;
+    }
+    
+    method int getDirection()
+    {
+        return direction;
+    }
+    
+    method int getx()
+    {
+        return x;
+    }
+    
+    method int gety()
+    {
+        return y;
+    }
+    
+    method void setDirection(int Adirection)
+    {
+        let direction = Adirection;
+        return;
+    }
+}

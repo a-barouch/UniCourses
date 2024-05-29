@@ -1,0 +1,199 @@
+
+
+class Game {
+	field Snake snake; // the square of this game
+	field int direction; // the square's current direction: 
+                        // 0=none, 1=up, 2=down, 3=left, 4=right
+	field Apple curApple; // the current object of Apple on the game board
+
+   /** Constructs a new Square Game. */
+   constructor Game new() {
+      let snake = Snake.new();
+	  let curApple = Apple.new();
+      let direction = 4;  // initial state is no movement
+      return this;
+   }
+
+   /** Disposes this game. */
+   method void dispose() {
+      do snake.dispose();
+      do Memory.deAlloc(this);
+      return;
+   }
+
+   /** Runs the game: handles the user's inputs and moves the square accordingly */
+   method void run() {
+      var char key;  // the key currently pressed by the user
+      var boolean exit;
+	  var boolean isFinished;
+	  
+      let exit = false;
+      
+      while (~exit) {
+         // waits for a key to be pressed
+         while (key = 0) {
+            let key = Keyboard.keyPressed();
+			let direction = 0;
+			let isFinished = moveSnake();
+			if (isFinished){
+				let exit = true;
+				return;
+			}
+			do Sys.wait(50);
+         }
+         if (key = 81)  { let exit = true; }     // q key
+         if (key = 131) { let direction = 1; }   // up arrow
+         if (key = 133) { let direction = 2; }   // down arrow
+         if (key = 130) { let direction = 3; }   // left arrow
+         if (key = 132) { let direction = 4; }   // right arrow
+
+         // waits for the key to be released
+         while (~(key = 0)) {
+            let key = Keyboard.keyPressed();
+            let isFinished = moveSnake();
+			if (isFinished){
+				let exit = true;
+			}
+			do Sys.wait(50);
+         }
+     } 
+     return;
+   }
+   
+   method bool isLost(){
+		var int snakeLength;
+		var Array snakeBody;
+		var Square first;
+		
+		let snakeLength = snake.getLen();
+		let snakeBody = snake.getBody();
+		let first = snakeBody[snakeLength-1];
+		
+		// got out of the screen borders
+		if ((first.getx() < 15)|(first.getx() >496)|(first.gety() <15) |(first.gety()>245)){
+			do Screen.clearScreen();
+			do Output.moveCursor(20, 20);
+			do Output.printString("Game Over :(");
+			return true;
+		
+		}
+		return false;
+		
+   }
+   
+   method bool isWon(){
+   		if (snake.getMaxLen() = snake.getLen()){ 
+				do screen.clearScreen();
+				do Output.moveCursor(20, 20);
+				do Output.printString("You WON!! :)");
+				return true;	
+		}
+		return false;
+   }
+   
+   method boolean directionValidity(int newDirection){
+
+		if ((newDirection = 1 & direction = 2) | (newDirection = 2 & direction = 1)){
+			return false;
+		}
+		if ((newDirection = 3 & direction = 4) | (newDirection = 4 & direction = 3)){
+			return false;
+		}
+		if (newDirection = 0){
+			return true;
+		}
+		if (newDirection = direction){
+			return false;
+		}
+		return true;
+   }
+   
+	/** in charge of moving the snake around*/
+   	method bool moveSnake(){
+		var int curSquare;
+		var int snakeLength;
+		var Square first, squareA, squareB;
+		var Array body;
+		
+		let snakeLength = snake.getLen();
+		let body = snake.getBody();
+		let first = body[snakeLength-1];
+		
+		
+		if (isLost()){
+			return true;
+		}
+		
+		// check if reached maximal length
+		if(isWon()){
+			return true;
+		}
+
+		// check if the pressed direction is valid, if not get out of the function
+		if (~directionValidity(first.getDirection())){ 
+			return false;
+		}
+		
+		let curSquare = 0;
+		while (curSquare < (snakeLength-1)){
+			let squareA = body[curSquare];
+			let squareB = body[curSquare+1];			
+			do squareA.setDirection(squareB.getDirection());
+			let curSquare = curSquare+1;
+		}
+		
+		if (~(direction =0)){
+			do first.setDirection(direction);
+		}
+		
+		// move all squares in the snake's body
+		let curSquare = 0;
+		while (curSquare<snakeLength){
+			let squareA = body[curSquare];
+			do squareA.move();
+			let curSquare = curSquare+1;
+		}
+		
+		// check if snake is passing through Apple object and handle
+		do eatAndDigest(first);
+		
+		do snake.draw();
+		return false;
+	}
+	
+	/** handles if the snake ate apple */
+	method void eatAndDigest(Square first){
+		var int firstX, firstY;
+		var int firstDirection;
+		var Array body;
+		let firstX = first.getx();
+		let firstY = first.gety();	
+		let firstDirection = first.getDirection();
+		let body = snake.getBody();
+		if ((first.getx() = curApple.getX())&(first.gety() = curApple.getY())){
+			do curApple.erase();
+			if (snake.getLen()<snake.getMaxLen()){
+				if (firstDirection =1){
+					let body[snake.getLen()] = Square.new(firstX, firstY-10,5,firstDirection);
+				}
+				if (firstDirection =2){
+					let body[snake.getLen()] = Square.new(firstX, firstY+10,5,firstDirection);
+				}
+				if (firstDirection =3){
+					let body[snake.getLen()] = Square.new(firstX-10, firstY,5,firstDirection);
+				}
+				if (firstDirection =4){
+					let body[snake.getLen()] = Square.new(firstX+10, firstY,5,firstDirection);
+				}
+				do snake.setLen(snake.getLen()+1);
+				do curApple.createApple();
+				}
+		}
+		return;
+	}
+			
+		
+}
+
+
+

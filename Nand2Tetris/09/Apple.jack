@@ -1,0 +1,66 @@
+class Apple{
+
+	field int x,y;
+	field int seedx,seedy;
+	field int rad;
+	field int xBorder;
+	field int yBorder;
+	
+	constructor Apple new(){
+		let rad = 5;
+		let x = 120;
+		let y = 120;
+		let seedx = 15;
+		let seedy = 30;
+		let xBorder = 480;
+		let yBorder = 240;
+
+		do createApple();
+		return this;
+	}
+	
+	method void dispose() {
+		do Memory.deAlloc(this);
+        return;
+    }
+	
+	method void draw() {
+        do Screen.setColor(true);
+        do Screen.drawCircle(x, y, rad);
+        return;
+    }
+	
+	method void erase() {
+        do Screen.setColor(false);
+        do Screen.drawCircle(x, y, rad);
+        return;
+    }
+	
+	method void createApple()
+    {
+        var int temp;
+
+        let temp = Math.multiply(10,seedx) + 20;
+        let x = temp - Math.multiply(Math.divide(temp,xBorder),xBorder);
+        let temp = Math.multiply(10,seedy) + 20;
+        let y = temp - Math.multiply(Math.divide(temp,yBorder),yBorder);
+		
+		let seedx = x;
+        let seedy = y;
+		
+        do draw();
+        return;
+    }
+	
+	method int getX() {
+		return x;
+	}
+	method int getY() {
+		return y;
+	}
+	method int getRad() {
+		return rad;
+	}
+	
+	
+}

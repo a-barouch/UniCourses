@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/cs/usr/arielleb/CLionProjects/Operating_Systems/OS_ex1/osm.cpp
+iostream
+-
+osm.h
+/cs/usr/arielleb/CLionProjects/Operating_Systems/OS_ex1/osm.h
+sys/time.h
+-
+
+/cs/usr/arielleb/CLionProjects/Operating_Systems/OS_ex1/osm.h
+

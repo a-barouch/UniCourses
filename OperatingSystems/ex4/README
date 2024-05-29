@@ -1,0 +1,14 @@
+arielleb, adi.simhi
+Arielle Barouch (205925704), Adi Simhi (206921165)
+EX: 4
+
+FILES:
+Makefile
+VirtualMemory.cpp
+
+
+REMARKS:
+We used one file for our program. In the algorithm we used  a struct that saves the current status of the frames
+each iteration of the recursive function.
+To avoid importing global variables we implemented functions such as min,max,abs instead of including the math.h library.
+

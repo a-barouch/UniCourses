@@ -1,0 +1,36 @@
+arielleb, adi.simhi
+Arielle Barouch (205925704), Adi Simhi (206921165)
+EX: 1
+
+FILES:
+osm.cpp
+
+REMARKS:
+We decided to use the arithmetic operation: x = x+1 in the function osm_operation_time. We checked
+the translation to assembly to make sure that the operation translates at all, in opposed to the operation 1+1;
+which does not translate.
+
+ANSWERS:
+
+assignment 1:
+We started by running strace on WhatIDo, to find out the program's commands that call the operating 
+system by using system calls. Now we will explain the commands in the process:
+
+The program "WhatIDO" recieves an argument, and creates a directory named "Welcome", inside it a directry names "To" and inside
+it creates a file named "OS2020". Inside the file, the program writes the line: "<userName>\n..If you haven't read.."
+And then proceeds to unlink, meaning delete the file "OS2020" from the directory, and then remove the directories "To" and 
+"Welcome". In the end, the program exits all threads in the process.
+
+
+assignment 2:
+We ran 1,000,000 iterations on each operation and calculated the mean time it took. We used a loop unrolling
+factor of 10, meaning every iteration had 10 operations and a total of 100,000 iterations. The loop unrolling
+helps increasing the program's speed.  We did that for the 3 different environment: CS computer OS, container and vm. 
+The results were that in all 3 operations the fastest was the container, followed closely by the CS computer and by far
+the worst preformence belongs to the VM. In all 3 environments the fastest command was arithmetic operation, then function
+call and then system call.
+
+We can explain the results by the fact that container doesn't need to create a new operating system but runs on the current
+computer's system, versus the VM which creates a virtual operating system. The system call took much more time then the 
+other 2 operations because, as we learned, it has more overhead than regular operations (because the kernel mode takes 
+control).  

@@ -1,0 +1,26 @@
+arielleb, adi.simhi
+===============================================================================
+Arielle Barouch, ID 205925704, arielleb@mail.huji.ac.il
+Adi Simhi, ID 206921165, adi.simhi@mail.huji.ac.il
+===============================================================================
+
+                           Project 12 - Operating System
+                           -----------------------------
+  
+
+Submitted Files
+---------------
+README - This file.
+Array.jack - array class
+Keyboard.jack - keyboard class, handles keyboard usage
+Math.jack - class of math operations 
+Memory.jack - handles memory location and allocation and accessing specific memory locations
+Output.jack - class that handles output to screen
+Screen.jack - class that handles drawing pixels on the screen
+String.jack - class of string object
+Sys.jack - system launching
+
+
+
+Remarks
+-------

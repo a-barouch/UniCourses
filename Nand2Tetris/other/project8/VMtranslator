@@ -1,0 +1,49 @@
+#!/usr/bin/env python3
+
+
+import os
+import sys
+
+from CodeWriter import CodeWriter
+
+from Parser import Parser
+
+NEW_LINE = '\n'
+
+ASM_SUFFIX = ".asm"
+
+
+def run_program_on_file(path_src, file_write, bootstrap=False):
+    """"create parser and code writer"""
+    parser = Parser(path_src)
+    code_writer = CodeWriter(parser, file_write, bootstrap)
+    code_writer.write_all()
+
+
+def write_file(path):
+    """"create write file and return it"""
+    if os.path.isdir(path):
+        path_to_write = path + "/" + os.path.basename(path) + ASM_SUFFIX
+    else:
+        path_to_write = os.path.splitext(path)[0] + ASM_SUFFIX
+    return open(path_to_write, 'w')
+
+
+# program has to be called with path to assembly file
+if __name__ == "__main__":
+    function_global_counter = 0
+    counter_for_lg_gt = 0
+    out_file = write_file(sys.argv[1])
+    if os.path.isdir(sys.argv[1]):
+        bootstrap = True
+        for root, dirs, files in os.walk(sys.argv[1], topdown=True):
+            for name in files:
+                string_path = os.path.join(root, name)
+                string_splited = name.split('.')
+                if len(string_splited) == 2:
+                    if string_splited[1] == "vm":
+                        run_program_on_file(string_path, out_file, bootstrap)
+                        bootstrap = False
+                # run_program_on_file(file)
+    else:
+        run_program_on_file(sys.argv[1], out_file, bootstrap=True)

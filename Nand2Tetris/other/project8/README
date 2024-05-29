@@ -1,0 +1,30 @@
+annaelleb, gogoi
+===============================================================================
+Ido Goldberg, ID 316082411, ido.goldberg2@mail.huji.ac.il
+Annaelle bensimon, ID 205798846, annaelle.bensimon@mail.huji.ac.il
+===============================================================================
+
+                           Project 8 - Virtual Machine
+                           ----------------------- 
+  
+
+Submitted Files
+---------------
+Makefile - change file permissions
+README - This file.
+VMtranslator - the python script, must receive file or folder as input, will
+    translate .vm files to .asm
+
+Parser.py - responsible for parsing vm files. this file also contains python
+    set of arithmetic functions and Enum that represents possible commands
+CodeWriter.py - responsible for writing code. also comes equipped with python
+dictionary of symbols in the vm language
+
+
+
+Remarks
+-------
+* we have followed the proposed implementation (less or more)
+* all the actual writing is done while using write_line_to_file method, to
+allow for quick changing of the file structure
+
